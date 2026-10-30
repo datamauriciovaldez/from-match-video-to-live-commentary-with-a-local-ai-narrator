@@ -1,0 +1,9 @@
+imageio[pyav]>=2.34
+polars>=1.0
+pandas>=2.2
+openai>=1.40
+omnivoice
+torch>=2.3
+soundfile>=0.12
+moviepy>=2.0
+jupyterlab>=4
