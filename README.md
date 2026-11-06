@@ -1,13 +1,27 @@
-# Local AI Video Analysis Pipeline
+<div align="center">
 
-End-to-end pipeline that turns football match footage into a narrated video report using **only locally hosted AI models**: frames → visual captions → narrative script → synthetic voice → final video.
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="docs/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/banner-light.svg">
+  <img src="docs/banner-dark.svg" width="100%" alt="narrator.py --live: a pitch with moving players and vision detections, a Gemma caption and a Qwen narration typing out in Spanish, and an OmniVoice waveform playing">
+</picture>
 
-![Python](https://img.shields.io/badge/Python-0F766E?style=flat-square&logo=python&logoColor=white)
-![polars](https://img.shields.io/badge/polars-0F766E?style=flat-square&logo=polars&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-0F766E?style=flat-square&logo=pytorch&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-0F766E?style=flat-square&logo=jupyter&logoColor=white)
-![Status: proof of concept](https://img.shields.io/badge/status-proof%20of%20concept-1F2937?style=flat-square)
-[![License: MIT](https://img.shields.io/badge/license-MIT-1F2937?style=flat-square)](LICENSE)
+# 🎙️ Local AI Football Narrator
+
+**Turns football match footage into a narrated video with only locally hosted AI models.**<br>
+frames → vision captions → commentary script → synthetic voice → final video
+
+![Python](https://img.shields.io/badge/Python-0d1117?style=for-the-badge&logo=python&logoColor=2DD4BF)
+![polars](https://img.shields.io/badge/polars-0d1117?style=for-the-badge&logo=polars&logoColor=2DD4BF)
+![PyTorch](https://img.shields.io/badge/PyTorch-0d1117?style=for-the-badge&logo=pytorch&logoColor=2DD4BF)
+![LM Studio](https://img.shields.io/badge/LM%20Studio-0d1117?style=for-the-badge)
+![Status: proof of concept](https://img.shields.io/badge/status-proof%20of%20concept-0F766E?style=for-the-badge)
+[![License: MIT](https://img.shields.io/badge/license-MIT-0F766E?style=for-the-badge)](LICENSE)
+
+| ⏱️ 60-second clip narrated end to end | 🧠 3 local models | ☁️ 0 cloud calls | 🗜️ frames stored as Parquet (zstd-22) |
+|:--:|:--:|:--:|:--:|
+
+</div>
 
 ## Context
 
@@ -39,6 +53,9 @@ flowchart LR
 
 ## Results
 
+Full write-up: [`docs/PROJECT_REPORT.md`](docs/PROJECT_REPORT.md).
+
+
 - A **60-second clip narrated end to end** with 6 generated voice segments. Every model ran locally through LM Studio and PyTorch.
 - Real intermediate outputs are in [`samples/`](samples). Here are two generated narration lines (Spanish):
 
@@ -58,8 +75,8 @@ flowchart LR
 **Requirements:** Python 3.12+, [LM Studio](https://lmstudio.ai) with its local server enabled (default `http://localhost:1234/v1`) and the models `google/gemma-4-e4b` and `qwen/qwen3.5-9b` downloaded, plus `ffmpeg` for `moviepy`.
 
 ```bash
-git clone https://github.com/datamauriciovaldez/local-ai-video-analysis-pipeline.git
-cd local-ai-video-analysis-pipeline
+git clone https://github.com/datamauriciovaldez/local-ai-football-narrator.git
+cd local-ai-football-narrator
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env            # then fill in the values
@@ -88,16 +105,20 @@ Run the notebooks in order (`01` → `05`). All intermediate files are written t
 ## Project structure
 
 ```
-local-ai-video-analysis-pipeline/
+local-ai-football-narrator/
 ├── 01_framing.ipynb
 ├── 02_captioning.ipynb
 ├── 03_narration.ipynb
 ├── 04_tts.ipynb
 ├── 05_video_assembly.ipynb
+├── docs/
+│   ├── PROJECT_REPORT.md        # original course report
+│   └── banner-{dark,light}.svg  # README banner (scripts/make_banner.py)
 ├── samples/
 │   ├── frame_descriptions.csv   # real output of stage 2
 │   └── narration.csv            # real output of stage 3
 ├── data/                        # video, Parquet, WAV, MP4 (git-ignored)
+├── scripts/make_banner.py
 ├── .env.example
 ├── requirements.txt
 └── LICENSE
