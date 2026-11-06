@@ -6,7 +6,7 @@
   <img src="docs/banner-dark.svg" width="100%" alt="narrator.py --live: a pitch with moving players and vision detections, a Gemma caption and a Qwen narration typing out in Spanish, and an OmniVoice waveform playing">
 </picture>
 
-# 🎙️ From Match Video to Live Commentary with Local AI
+# 🎙️ From Match Video to Live Commentary with a Local AI Narrator
 
 **Turns football match footage into a narrated video using only locally hosted AI models.**<br>
 frames → vision captions → commentary script → synthetic voice → final video
@@ -225,8 +225,8 @@ This is a useful, honest finding: **small local models follow style instructions
 **Requirements:** Python 3.12+, [LM Studio](https://lmstudio.ai) with its local server enabled (default `http://localhost:1234/v1`) and the models `google/gemma-4-e4b` and `qwen/qwen3.5-9b` downloaded, plus `ffmpeg` for `moviepy`.
 
 ```bash
-git clone https://github.com/datamauriciovaldez/from-match-video-to-live-commentary-with-local-ai.git
-cd from-match-video-to-live-commentary-with-local-ai
+git clone https://github.com/datamauriciovaldez/from-match-video-to-live-commentary-with-a-local-ai-narrator.git
+cd from-match-video-to-live-commentary-with-a-local-ai-narrator
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env            # then fill in the values
@@ -257,7 +257,7 @@ Run the notebooks in order (`01` → `05`). All intermediate files are written t
 ## 🗂 Project structure
 
 ```
-from-match-video-to-live-commentary-with-local-ai/
+from-match-video-to-live-commentary-with-a-local-ai-narrator/
 ├── 01_framing.ipynb
 ├── 02_captioning.ipynb
 ├── 03_narration.ipynb
